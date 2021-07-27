@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  jupyter-notebook:
+    # https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html
+    image: jupyter/scipy-notebook:latest
+    environment:
+      - JUPYTER_TOKEN=${JUPYTER_TOKEN}
+    volumes:
+      - ./notebooks:/code/notebooks
+      - ./data:/code/data
+      - ./logs:/code/logs
+      - ./requirements:/code/requirements
+      - ./scripts:/code/scripts
+    working_dir: /code
+    ports:
+      # Jupyter port
+      - "8888:8888"
+      # Tensorboard port
+      - "6006:6006"
